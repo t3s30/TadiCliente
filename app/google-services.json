@@ -1,0 +1,117 @@
+{
+  "project_info": {
+    "project_number": "22237047929",
+    "firebase_url": "https://tadi-bac4e-default-rtdb.firebaseio.com",
+    "project_id": "tadi-bac4e",
+    "storage_bucket": "tadi-bac4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22237047929:android:877ae0f99e2016e987b8a8",
+        "android_client_info": {
+          "package_name": "app.tadi.cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22237047929-cq9rsck97em7qfavv472ml13snj7lu4r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tadi.cliente",
+            "certificate_hash": "b0b2487606106fb0ab848f569b6ebc5c27e97505"
+          }
+        },
+        {
+          "client_id": "22237047929-l0o0i81q86ia9qqmjn5hn9lik286lc1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSO9_Szto9VP6C_q75lA3KWwUrQLlSORI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22237047929-l0o0i81q86ia9qqmjn5hn9lik286lc1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22237047929:android:d5b3caa61c6b41a087b8a8",
+        "android_client_info": {
+          "package_name": "app.tadi.conductor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22237047929-6629ta9d8gs2gr338gb3h7d2nns6d300.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tadi.conductor",
+            "certificate_hash": "86bc41bc84ddd20b96b2263ec4d1f887118f81e8"
+          }
+        },
+        {
+          "client_id": "22237047929-alk510vbc4afkfl6ugscppi8s1g00rek.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tadi.conductor",
+            "certificate_hash": "9d26ad1243b1020a9115f1dacc749447136f9254"
+          }
+        },
+        {
+          "client_id": "22237047929-df84l97d3m1rfj6iouhsa1kt7s1so4u9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tadi.conductor",
+            "certificate_hash": "b0b2487606106fb0ab848f569b6ebc5c27e97505"
+          }
+        },
+        {
+          "client_id": "22237047929-rk00tevjibs91ov99h78igbnr4dv3dgv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tadi.conductor",
+            "certificate_hash": "1b4f12ce1282553bbfdf5187df3d89321792c744"
+          }
+        },
+        {
+          "client_id": "22237047929-vag08ro4ja9j4ef21j9t3o5ikm8m2pas.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.tadi.conductor",
+            "certificate_hash": "b04b5229af7240e61709ed18cd6d044e7d7625b9"
+          }
+        },
+        {
+          "client_id": "22237047929-l0o0i81q86ia9qqmjn5hn9lik286lc1f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSO9_Szto9VP6C_q75lA3KWwUrQLlSORI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22237047929-l0o0i81q86ia9qqmjn5hn9lik286lc1f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
