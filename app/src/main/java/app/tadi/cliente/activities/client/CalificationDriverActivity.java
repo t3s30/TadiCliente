@@ -142,7 +142,6 @@ public class CalificationDriverActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Debes ingresar la calificacion", Toast.LENGTH_SHORT).show();
         }*/
-
         Toast.makeText(CalificationDriverActivity.this, "La calificacion se guardo correctamente", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(CalificationDriverActivity.this, MapClientActivity.class);
         startActivity(intent);
