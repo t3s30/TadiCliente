@@ -60,7 +60,7 @@
                 android:id="@+id/imageViewClientBooking"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/man"
+                android:src="@drawable/abdiel2"
                 android:layout_gravity="center"
                 app:civ_border_width="3dp"
                 app:civ_border_color="@color/colorWhite"

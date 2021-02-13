@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -67,7 +68,7 @@ public class RequestDriverActivity extends AppCompatActivity {
     private GoogleApiProvider mGoogleApiProvider;
 
     private ValueEventListener mListener;
-
+    MediaPlayer mMediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,9 @@ public class RequestDriverActivity extends AppCompatActivity {
         mAnimation = findViewById(R.id.animation);
         mTextViewLookingFor = findViewById(R.id.textViewLookingFor);
         mButtonCancelRequest = findViewById(R.id.btnCancelRequest);
-
+        mMediaPlayer = MediaPlayer.create(this, R.raw.ring2);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
         mAnimation.playAnimation();
 
         mExtraOrigin = getIntent().getStringExtra("origin");
@@ -110,6 +113,7 @@ public class RequestDriverActivity extends AppCompatActivity {
         mClientBookingProvider.delete(mAuthProvider.getId()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                mMediaPlayer.stop();
                 sendNotificationCancel();
             }
         });
@@ -149,6 +153,7 @@ public class RequestDriverActivity extends AppCompatActivity {
                     mRadius = mRadius + 0.1f;
                     // NO ENCONTRO NINGUN CONDUCTOR
                     if (mRadius > 100) {
+                        mMediaPlayer.stop();
                         mTextViewLookingFor.setText("NO SE ENCONTRO UN CONDUCTOR");
                         Toast.makeText(RequestDriverActivity.this, "NO SE ENCONTRO UN CONDUCTOR", Toast.LENGTH_SHORT).show();
                         return;
@@ -211,6 +216,7 @@ public class RequestDriverActivity extends AppCompatActivity {
                     map.put("body",
                             "El cliente cancelo la solicitud"
                     );
+
                     FCMBody fcmBody = new FCMBody(token, "high", "4500s", map);
                     mNotificationProvider.sendNotification(fcmBody).enqueue(new Callback<FCMResponse>() {
                         @Override
@@ -219,6 +225,7 @@ public class RequestDriverActivity extends AppCompatActivity {
                                 if (response.body().getSuccess() == 1) {
                                     Toast.makeText(RequestDriverActivity.this, "La solicitud se cancelo correctamente", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(RequestDriverActivity.this, MapClientActivity.class);
+                                    mMediaPlayer.stop();
                                     startActivity(intent);
                                     finish();
                                     //Toast.makeText(RequestDriverActivity.this, "La notificacion se ha enviado correctamente", Toast.LENGTH_SHORT).show();
@@ -333,10 +340,12 @@ public class RequestDriverActivity extends AppCompatActivity {
 
                     String status = dataSnapshot.getValue().toString();
                     if (status.equals("accept")) {
+                        mMediaPlayer.stop();
                         Intent intent = new Intent(RequestDriverActivity.this, MapClientBookingActivity.class);
                         startActivity(intent);
                         finish();
                     } else if (status.equals("cancel")) {
+                        mMediaPlayer.stop();
                         Toast.makeText(RequestDriverActivity.this, "El conductor no acepto el viaje", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(RequestDriverActivity.this, MapClientActivity.class);
                         startActivity(intent);
@@ -355,6 +364,7 @@ public class RequestDriverActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        mMediaPlayer.stop();
         super.onDestroy();
         if (mListener != null) {
             mClientBookingProvider.getStatus(mAuthProvider.getId()).removeEventListener(mListener);

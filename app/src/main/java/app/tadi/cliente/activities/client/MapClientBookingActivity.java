@@ -2,8 +2,11 @@ package app.tadi.cliente.activities.client;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -26,6 +30,7 @@ import com.google.android.libraries.places.api.Places;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+
 import app.tadi.cliente.R;
 
 import app.tadi.cliente.providers.AuthProvider;
@@ -35,6 +40,7 @@ import app.tadi.cliente.providers.GeofireProvider;
 import app.tadi.cliente.providers.GoogleApiProvider;
 import app.tadi.cliente.providers.TokenProvider;
 import app.tadi.cliente.utils.DecodePoints;
+
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -117,7 +123,7 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
     }
 
     private void getStatus() {
-        mListenerStatus =  mClientBookingProvider.getStatus(mAuthProvider.getId()).addValueEventListener(new ValueEventListener() {
+        mListenerStatus = mClientBookingProvider.getStatus(mAuthProvider.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -128,8 +134,7 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
                     if (status.equals("start")) {
                         mTextViewStatusBooking.setText("Estado: Viaje Iniciado");
                         startBooking();
-                    }
-                    else if (status.equals("finish")) {
+                    } else if (status.equals("finish")) {
                         mTextViewStatusBooking.setText("Estado: Viaje Finalizado");
                         finishBooking();
                     }
@@ -176,15 +181,15 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
                     String idDriver = dataSnapshot.child("idDriver").getValue().toString();
                     mIdDriver = idDriver;
                     double destinatioLat = Double.parseDouble(dataSnapshot.child("destinationLat").getValue().toString());
-                    double destinatioLng= Double.parseDouble(dataSnapshot.child("destinationLng").getValue().toString());
+                    double destinatioLng = Double.parseDouble(dataSnapshot.child("destinationLng").getValue().toString());
 
                     double originLat = Double.parseDouble(dataSnapshot.child("originLat").getValue().toString());
-                    double originLng= Double.parseDouble(dataSnapshot.child("originLng").getValue().toString());
+                    double originLng = Double.parseDouble(dataSnapshot.child("originLng").getValue().toString());
                     mOriginLatLng = new LatLng(originLat, originLng);
                     mDestinationLatLng = new LatLng(destinatioLat, destinatioLng);
                     mTextViewOriginClientBooking.setText("recoger en: " + origin);
                     mTextViewDestinationClientBooking.setText("destino: " + destination);
-                    mMap.addMarker(new MarkerOptions().position(mOriginLatLng).title("Recoger aqui").icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_pin_red)));
+                    mMap.addMarker(new MarkerOptions().position(mOriginLatLng).title("Recoger aqui").icon(BitmapDescriptorFactory.fromResource(R.drawable.square2)));
                     getDriver(idDriver);
                     getDriverLocation(idDriver);
                 }
@@ -270,14 +275,14 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
                     String points = polylines.getString("points");
                     mPolylineList = DecodePoints.decodePoly(points);
                     mPolylineOptions = new PolylineOptions();
-                    mPolylineOptions.color(Color.DKGRAY);
+                    mPolylineOptions.color(Color.WHITE);
                     mPolylineOptions.width(13f);
                     mPolylineOptions.startCap(new SquareCap());
                     mPolylineOptions.jointType(JointType.ROUND);
                     mPolylineOptions.addAll(mPolylineList);
                     mMap.addPolyline(mPolylineOptions);
 
-                    JSONArray legs =  route.getJSONArray("legs");
+                    JSONArray legs = route.getJSONArray("legs");
                     JSONObject leg = legs.getJSONObject(0);
                     JSONObject distance = leg.getJSONObject("distance");
                     JSONObject duration = leg.getJSONObject("duration");
@@ -285,7 +290,7 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
                     String durationText = duration.getString("text");
 
 
-                } catch(Exception e) {
+                } catch (Exception e) {
                     Log.d("Error", "Error encontrado " + e.getMessage());
                 }
             }
@@ -298,12 +303,26 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
     }
 
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        try {
+            boolean success = googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.mapstyle));
+        } catch (Exception e) {
+
+        }
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         mMap.setMyLocationEnabled(true);
 
     }

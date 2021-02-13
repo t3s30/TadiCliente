@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.ColorSpace;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -64,13 +66,13 @@ public class DetailRequestActivity extends AppCompatActivity implements OnMapRea
 
 
     private Button mButtonRequest;
-
+    MediaPlayer mMediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_request);
         //MyToolbar.show(this, "TUS DATOS", true);
-
+        mMediaPlayer = MediaPlayer.create(this, R.raw.ring1);
         mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
 
@@ -114,6 +116,7 @@ public class DetailRequestActivity extends AppCompatActivity implements OnMapRea
     }
 
     private void goToRequestDriver() {
+        mMediaPlayer.start();
         Intent intent = new Intent(DetailRequestActivity.this, RequestDriverActivity.class);
         intent.putExtra("origin_lat", mOriginLatLng.latitude);
         intent.putExtra("origin_lng", mOriginLatLng.longitude);
@@ -140,8 +143,8 @@ public class DetailRequestActivity extends AppCompatActivity implements OnMapRea
                     String points = polylines.getString("points");
                     mPolylineList = DecodePoints.decodePoly(points);
                     mPolylineOptions = new PolylineOptions();
-                    mPolylineOptions.color(Color.BLUE);
-                    mPolylineOptions.width(13f);
+                    mPolylineOptions.color(Color.rgb(94,199,170));
+                    mPolylineOptions.width(10f);
                     mPolylineOptions.startCap(new SquareCap());
                     mPolylineOptions.jointType(JointType.ROUND);
                     mPolylineOptions.addAll(mPolylineList);
@@ -180,7 +183,7 @@ public class DetailRequestActivity extends AppCompatActivity implements OnMapRea
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder()
                     .target(mOriginLatLng)
-                    .zoom(15f)
+                    .zoom(10f)
                     .build()
         ));
 
