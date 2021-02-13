@@ -26,13 +26,13 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@color/colorBlack" />
 
             <TextView
                 android:id="@+id/textViewNameBookingDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UBER CLONE"
+                android:text="TADI"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="26sp"
@@ -134,10 +134,10 @@
 
     </LinearLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/icon_uber_clone"
+        android:src="@drawable/tadiverdealfa"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center|top"/>

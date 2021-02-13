@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorGreen"
     tools:context="app.tadi.cliente.activities.SelectOptionAuthActivity">
 
     <include layout="@layout/action_bar_toollbar" />
@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="200dp"
             android:layout_height="150dp"
-            android:src="@drawable/imosnewbig"
+            android:src="@drawable/tadoalfa"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"/>
 
@@ -40,7 +40,7 @@
             android:layout_marginLeft="30dp"
             android:background="@drawable/rounded_button"
             android:text="YA TENGO CUENTA"
-            android:backgroundTint="@color/colorBlueLight"
+            android:backgroundTint="@color/colorAccent"
             android:textColor="@color/colorWhite"
             android:layout_marginRight="30dp"/>
 

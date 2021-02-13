@@ -264,7 +264,7 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
                 }
 
                 LatLng driverLatLng = new LatLng(location.latitude, location.longitude);
-                Marker marker = mMap.addMarker(new MarkerOptions().position(driverLatLng).title("Conductor disponible").icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car)));
+                Marker marker = mMap.addMarker(new MarkerOptions().position(driverLatLng).title("Conductor disponible").icon(BitmapDescriptorFactory.fromResource(R.drawable.ubercar)));
                 marker.setTag(key);
                 mDriversMarkers.add(marker);
             }

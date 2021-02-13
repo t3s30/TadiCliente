@@ -148,7 +148,7 @@ public class RequestDriverActivity extends AppCompatActivity {
                 if (!mDriverFound) {
                     mRadius = mRadius + 0.1f;
                     // NO ENCONTRO NINGUN CONDUCTOR
-                    if (mRadius > 5) {
+                    if (mRadius > 100) {
                         mTextViewLookingFor.setText("NO SE ENCONTRO UN CONDUCTOR");
                         Toast.makeText(RequestDriverActivity.this, "NO SE ENCONTRO UN CONDUCTOR", Toast.LENGTH_SHORT).show();
                         return;

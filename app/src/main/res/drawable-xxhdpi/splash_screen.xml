@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/colorPrimary"
+    <item android:drawable="@color/colorGreen"
 
         />
 
     <item
         android:gravity="center"
-        android:width="700dp"
-        android:height="350dp"
+        android:width="200dp"
+        android:height="200dp"
         >
 
         <bitmap
 
-            android:src="@drawable/imosnew"
-            android:width="50dp"
-            android:height="50dp"/>
+            android:src="@drawable/tadoalfa"
+            android:width="250dp"
+            android:height="250dp"/>
 
     </item>
 

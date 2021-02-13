@@ -98,7 +98,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="15dp"
-                android:src="@drawable/icon_car"
+                android:src="@drawable/ubercar"
                 />
 
 

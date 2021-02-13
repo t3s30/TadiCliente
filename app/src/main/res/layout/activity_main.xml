@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorGreen"
     tools:context="app.tadi.cliente.activities.MainActivity">
 
     <LinearLayout
@@ -14,9 +14,9 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/imosnewbig"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/tadoalfa"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"/>
 

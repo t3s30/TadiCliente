@@ -131,7 +131,7 @@ public class MapDriverBookingActivity extends AppCompatActivity implements OnMap
                             new LatLng(location.getLatitude(), location.getLongitude())
                             )
                                     .title("Tu posicion")
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ubercar))
                     );
                     // OBTENER LA LOCALIZACION DEL USUARIO EN TIEMPO REAL
                     mMap.moveCamera(CameraUpdateFactory.newCameraPosition(

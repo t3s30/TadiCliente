@@ -236,7 +236,7 @@ public class MapClientBookingActivity extends AppCompatActivity implements OnMap
                     mMarkerDriver = mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(lat, lng))
                             .title("Tu conductor")
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car)));
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ubercar)));
                     if (mIsFirstTime) {
                         mIsFirstTime = false;
                         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(
