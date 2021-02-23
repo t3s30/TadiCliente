@@ -157,7 +157,7 @@ public class DetailRequestActivity extends AppCompatActivity implements OnMapRea
                     String distanceText = distance.getString("text");
                     String durationText = duration.getString("text");
                     mTextViewTime.setText(durationText);
-                    mTextViewDistance.setText(distanceText);
+                   // mTextViewDistance.setText(distanceText);
 
                 } catch(Exception e) {
                     Log.d("Error", "Error encontrado " + e.getMessage());

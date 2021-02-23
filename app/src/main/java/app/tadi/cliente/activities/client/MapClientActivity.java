@@ -26,6 +26,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.firebase.geofire.GeoLocation;
@@ -53,6 +55,8 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.maps.android.SphericalUtil;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import app.tadi.cliente.R;
 import app.tadi.cliente.activities.MainActivity;
@@ -66,6 +70,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MapClientActivity extends AppCompatActivity implements OnMapReadyCallback {
+    CarouselView carouselView;
+
+    int[] sampleImages = {R.drawable.image_1, R.drawable.image_2, R.drawable.image_3};
+
 
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
@@ -130,11 +138,19 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_client);
-        MyToolbar.show(this, "Cliente", false);
+        MyToolbar.show(this, "TADI", false);
 
         mMediaPlayer = MediaPlayer.create(this, R.raw.boton);
+
+
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+        carouselView.setPageCount(sampleImages.length);
+
+        carouselView.setImageListener(imageListener);
+
 
 
         mAuthProvider = new AuthProvider();
@@ -185,6 +201,14 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(sampleImages[position]);
+        }
+    };
+
     private void limitSearch() {
         LatLng northSide = SphericalUtil.computeOffset(mCurrentLatLng, 5000, 0);
         LatLng southSide = SphericalUtil.computeOffset(mCurrentLatLng, 5000, 180);
@@ -216,6 +240,10 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
 
     private void instanceAutocompleteOrigin() {
         mAutocomplete = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.placeAutocompleteOrigin);
+        ImageView searchIcon = (ImageView)((LinearLayout)mAutocomplete.getView()).getChildAt(0);
+
+// Set the desired icon
+        searchIcon.setImageDrawable(getResources().getDrawable(R.drawable.markertaxi));
         mAutocomplete.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME));
         mAutocomplete.setHint("Lugar de recogida");
         mAutocomplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
@@ -237,6 +265,12 @@ public class MapClientActivity extends AppCompatActivity implements OnMapReadyCa
 
     private void instanceAutocompleteDestination() {
         mAutocompleteDestination = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.placeAutocompleteDestination);
+        ImageView searchIcon = (ImageView)((LinearLayout)mAutocompleteDestination.getView()).getChildAt(0);
+
+// Set the desired icon
+        searchIcon.setImageDrawable(getResources().getDrawable(R.drawable.mapas));
+
+
         mAutocompleteDestination.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME));
         mAutocompleteDestination.setHint("Destino");
         mAutocompleteDestination.setOnPlaceSelectedListener(new PlaceSelectionListener() {

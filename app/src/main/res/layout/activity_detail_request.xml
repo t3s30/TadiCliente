@@ -126,7 +126,7 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_timer" />
+                        android:src="@drawable/time" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -156,12 +156,12 @@
                     <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_map" />
+                        android:src="@drawable/icon_map" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distancia"
+                        android:text="Precio"
                         android:textColor="@color/colorWhite"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -170,7 +170,7 @@
                         android:id="@+id/textViewDistance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0km"
+                        android:text="160.0 - 180.0"
                         android:textColor="@color/colorWhite"
                         android:textSize="16sp" />
 
